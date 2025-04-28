@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../core/domain/routing/service/routing_default_route_service.dart';
 import '../../core/domain/routing/service/routing_redirect_service.dart';
 import '../../features/bottom_bar/routing.dart' as navbar;
+import '../../features/startup/pages/routing.dart' as startup;
 
 GoRouter createRouter(
   GlobalKey<NavigatorState>? navigatorKey, {
@@ -12,24 +13,22 @@ GoRouter createRouter(
 }) {
   final List<RouteBase> routes = [];
 
+  routes.addAll(startup.createRoutes());
   routes.add(
-    navbar.createShellRoute(
+    GoRoute(
+      path: Navigator.defaultRouteName,
       redirect: (context, state) async {
-        final replacement = await redirectService.decideReplacement(state);
-        return replacement;
+        final route = await defaultRoutingService.defaultRouteReplacement();
+        return route.routeName;
       },
     ),
   );
 
   routes.add(
-    GoRoute(
-      path: Navigator.defaultRouteName,
+    navbar.createShellRoute(
       redirect: (context, state) async {
-        if (state.matchedLocation == Navigator.defaultRouteName) {
-          final route = await defaultRoutingService.defaultRouteReplacement();
-          return route.routeName;
-        }
-        return null;
+        final replacement = await redirectService.decideReplacement(state);
+        return replacement;
       },
     ),
   );

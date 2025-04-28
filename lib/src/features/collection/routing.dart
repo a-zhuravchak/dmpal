@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:dmpal/src/features/collection/pages/collection/collection_page.dart';
 import 'package:go_router/go_router.dart';
 
 import 'collection.dart';
@@ -8,7 +8,7 @@ List<RouteBase> createRoutesForShell() {
     GoRoute(
         path: CollectionInitialRoute().goRouterPath,
         pageBuilder: (context, state) {
-          return const NoTransitionPage(child: Scaffold(key: CollectionKeys.collection));
+          return const NoTransitionPage(child: CollectionPage(key: CollectionKeys.collection));
         }),
   ];
   final List<RouteBase> internal = [];

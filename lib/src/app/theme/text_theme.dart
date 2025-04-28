@@ -10,6 +10,9 @@ TextTheme createTextTheme(
   TextTheme bodyTextTheme = GoogleFonts.getTextTheme(bodyFontString, baseTextTheme);
   TextTheme displayTextTheme = GoogleFonts.getTextTheme(displayFontString, baseTextTheme);
   TextTheme textTheme = displayTextTheme.copyWith(
+    headlineLarge: bodyTextTheme.headlineLarge,
+    headlineMedium: bodyTextTheme.headlineMedium,
+    headlineSmall: bodyTextTheme.headlineSmall,
     bodyLarge: bodyTextTheme.bodyLarge,
     bodyMedium: bodyTextTheme.bodyMedium,
     bodySmall: bodyTextTheme.bodySmall,
@@ -18,4 +21,14 @@ TextTheme createTextTheme(
     labelSmall: bodyTextTheme.labelSmall,
   );
   return textTheme;
+}
+
+TextStyle bubbleTextStyle(ColorScheme cs) {
+  return GoogleFonts.pacifico(
+    textStyle: TextStyle(
+      color: cs.secondaryContainer,
+      fontSize: 32,
+      fontWeight: FontWeight.w400,
+    ),
+  );
 }

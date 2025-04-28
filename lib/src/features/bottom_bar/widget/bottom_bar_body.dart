@@ -17,6 +17,7 @@ class BottomBarBody extends StatelessWidget {
       body: navigationShell,
       bottomNavigationBar: NavigationBar(
         selectedIndex: navigationShell.currentIndex,
+        labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
         destinations: const [
           NavigationDestination(label: 'Collection`', icon: Icon(Icons.collections_outlined)),
           NavigationDestination(label: 'Games', icon: Icon(Icons.playlist_add_check)),

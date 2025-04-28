@@ -5,6 +5,7 @@ import '../../core/data/routing/service/routing_default_route_service.dart';
 import '../../core/data/routing/service/routing_redirect_service.dart';
 import '../../core/domain/routing/service/routing_default_route_service.dart';
 import '../../core/domain/routing/service/routing_redirect_service.dart';
+import '../../core/domain/startup/routing_redirect_startup_service.dart';
 
 void setup(GetIt getIt) {
   _setupRoutingService(getIt);
@@ -14,7 +15,9 @@ void setup(GetIt getIt) {
 void _setupRoutingService(GetIt getIt) {
   getIt.registerSingleton<RoutingRedirectReplacementService>(
     RoutingRedirectReplacementCompositeService(
-      services: [],
+      services: [
+        getIt<RoutingRedirectStartupService>(),
+      ],
     ),
   );
 }
