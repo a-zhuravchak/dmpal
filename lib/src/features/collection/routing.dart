@@ -1,6 +1,5 @@
 import 'package:dmpal/src/features/collection/pages/collection/collection_page.dart';
 import 'package:go_router/go_router.dart';
-
 import 'collection.dart';
 
 List<RouteBase> createRoutesForShell() {
