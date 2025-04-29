@@ -1,21 +1,11 @@
+import 'package:dmpal/src/app/theme/text_theme.dart';
+import 'package:dmpal/src/app/theme/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-TextTheme createTextTheme(
-  BuildContext context, {
-  String bodyFontString = 'Manrope',
-  String displayFontString = 'Manrope',
-}) {
-  TextTheme baseTextTheme = GoogleFonts.manropeTextTheme();
-  TextTheme bodyTextTheme = GoogleFonts.getTextTheme(bodyFontString, baseTextTheme);
-  TextTheme displayTextTheme = GoogleFonts.getTextTheme(displayFontString, baseTextTheme);
-  TextTheme textTheme = displayTextTheme.copyWith(
-    bodyLarge: bodyTextTheme.bodyLarge,
-    bodyMedium: bodyTextTheme.bodyMedium,
-    bodySmall: bodyTextTheme.bodySmall,
-    labelLarge: bodyTextTheme.labelLarge,
-    labelMedium: bodyTextTheme.labelMedium,
-    labelSmall: bodyTextTheme.labelSmall,
-  );
-  return textTheme;
+ThemeData createAppTheme(BuildContext context) {
+  final brightness = View.of(context).platformDispatcher.platformBrightness;
+  final TextTheme textTheme = createTextTheme(context);
+  final MaterialTheme materialTheme = MaterialTheme(textTheme);
+
+  return brightness == Brightness.light ? materialTheme.light() : materialTheme.dark();
 }
